@@ -1,3 +1,12 @@
+# :confetti_ball: 1.1.0 (2023-01-16T09:47:03.770Z)
+- - -
+## :hammer: Features
+* OIMP-190 - setup AWS Corretto Java distribution
+## :bug: Fixes
+* OIMP-190 - upgraded GH actions versions
+* OIMP-190 - upgraded "stCarolas/setup-mave" GH actions version
+- - -
+- - -
 # :confetti_ball: 1.0.1 (2022-05-11T09:31:27.084Z)
 - - -
 ## :newspaper: Others
