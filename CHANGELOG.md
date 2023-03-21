@@ -1,3 +1,9 @@
+# :confetti_ball: 1.2.0 (2023-03-21T08:01:06.861Z)
+- - -
+## :hammer: Features
+* DTATWO-1549 use "3.8.8" as default maven version for self-hosted runners (#8)
+- - -
+- - -
 # :confetti_ball: 1.1.0 (2023-01-16T09:47:03.770Z)
 - - -
 ## :hammer: Features
