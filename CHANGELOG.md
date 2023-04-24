@@ -1,3 +1,12 @@
+# :confetti_ball: 1.3.1 (2023-04-24T07:57:58.531Z)
+- - -
+## :bug: Fixes
+* DTATWO-1752 fixed maven warning for s3-wagon extension related to incorrect filePermissions
+* DTATWO-1752 use default value for server filePermissions value
+## :newspaper: Others
+* docs: DTATWO-1752 added empty line
+- - -
+- - -
 # :confetti_ball: 1.3.0 (2023-03-22T11:08:55.891Z)
 - - -
 ## :hammer: Features
