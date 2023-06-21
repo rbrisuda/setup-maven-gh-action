@@ -1,3 +1,12 @@
+# :confetti_ball: 1.4.0 (2023-06-21T12:50:55.925Z)
+- - -
+## :hammer: Features
+* HUBSA-2346 use profile for getting maven artifacts
+* HUBSA-2362 removed dependneci on configure aws action
+* HUBSA-2362 removed dots
+* HUBSA-2362 removed dots
+- - -
+- - -
 # :confetti_ball: 1.3.1 (2023-04-24T07:57:58.531Z)
 - - -
 ## :bug: Fixes
