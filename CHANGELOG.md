@@ -1,3 +1,9 @@
+# :confetti_ball: 1.4.1 (2023-10-12T15:06:08.467Z)
+- - -
+## :bug: Fixes
+* HUBSA-2346 testing sh runner (#12)
+- - -
+- - -
 # :confetti_ball: 1.4.0 (2023-06-21T12:50:55.925Z)
 - - -
 ## :hammer: Features
