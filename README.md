@@ -1,5 +1,8 @@
 # setup-maven-gh-action
 
+Action for setup of running maven goals with using S3 buckets as source of maven artifacts.
+S3 buckets can be used as alternative for storing private artifacts. In this case maven wagon jar is required.
+
 * Action prepares environment for running maven project for both runners: github and selfhosted.
   * Special external Maven repositories can be configured in project main pom.xml file
     * default maven version is **3.8.8**

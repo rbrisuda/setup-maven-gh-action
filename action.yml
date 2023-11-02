@@ -23,19 +23,9 @@ inputs:
     required: false
     default: "maven-aws-profile"
 
-  maven-wagon-version:
-    description: "Wagon version"
-    required: false
-    default: "1.0.5"
-
-  changed-modules-enable:
-    description: "Enable evaluating of changed maven modules and set in output variable: changed-modules"
-    required: false
-    default: "false"
-  changed-modules-always-included:
-    description: "Set always included modules if changed-module is enabled"
-    required: false
-    default: ""
+  maven-s3-wagon-key:
+    description: "Maven s3 wagon key in maven release S3 repository"
+    required: true
 
   self-hosted-runner-maven-version:
     description: "Maven version used in self hosted runners"
@@ -54,9 +44,6 @@ inputs:
     default: "eu-west-1"
 
 outputs:
-  changed-modules:
-    description: "List of changed modules evaluated from last two commits if enabled"
-    value: ${{ steps.maven_changed_modules.outputs.changed_modules }}
   maven-aws-profile:
     description: "Created aws profile used for accessing maven repositories"
     value: ${{ inputs.maven-aws-profile-name }}
@@ -86,7 +73,7 @@ runs:
         echo MAVEN_SNAPSHOT_URL="${MAVEN_SNAPSHOT_URL}" >> $GITHUB_ENV
         echo MAVEN_RELEASE_URL="${MAVEN_RELEASE_URL}" >> $GITHUB_ENV
         
-        echo MAVEN_WAGON_PATH="${MAVEN_RELEASE_URL}/com/ohpen/maven/s3-wagon/${{ inputs.maven-wagon-version }}/s3-wagon-${{ inputs.maven-wagon-version }}-jar-with-dependencies.jar" >> $GITHUB_ENV
+        echo MAVEN_WAGON_PATH="${MAVEN_RELEASE_URL}/${{ inputs.maven-s3-wagon-key }}" >> $GITHUB_ENV
         
         echo DOCKER_REGISTRY="${{ inputs.maven-artifacts-account-id }}.dkr.ecr.${AWS_REGION}.amazonaws.com" >> $GITHUB_ENV
         
@@ -129,7 +116,7 @@ runs:
     - name: Download Maven S3 repository extension
       shell: bash
       run: |
-        TMP_WAGON_PATH="/tmp/s3-wagon-${{ inputs.maven-wagon-version }}-jar-with-dependencies.jar"
+        TMP_WAGON_PATH="/tmp/s3-wagon.jar"
         aws s3 cp ${{ env.MAVEN_WAGON_PATH }} $TMP_WAGON_PATH --profile ${{ inputs.maven-aws-profile-name }} 
         
         sudo cp $TMP_WAGON_PATH ${{ steps.runner-specific.outputs.maven_ext_path }}
@@ -143,13 +130,3 @@ runs:
       uses: skjolber/maven-cache-github-action@v2.0
       with:
         step: restore
-
-    - name: Find maven changed modules
-      if: inputs.changed-modules-enable == 'true'
-      id: maven_changed_modules
-      shell: bash
-      run: |
-        bash ${{ github.action_path }}/changed-modules.sh \
-          -p "${{ github.event.before }}" \
-          -a "${{ github.sha }}" \
-          -i "${{ inputs.changed-modules-always-included }}"
